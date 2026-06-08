@@ -71,7 +71,7 @@ Object.assign(SokobanGame.prototype, {
     this.levels.forEach((lvl, idx) => {
       const opt = document.createElement('option');
       opt.value = idx;
-      opt.textContent = this.t('level_format', { num: lvl.level, title: lvl.title || 'Sokoban' });
+      opt.textContent = this.t('level_format', { num: lvl.level, title: this.getLevelTitle(lvl) });
       this.levelSelect.appendChild(opt);
     });
   },
@@ -243,7 +243,7 @@ Object.assign(SokobanGame.prototype, {
     // 8. 当前关卡标题卡片翻译
     if (this.levels[this.levelIndex] && this.levelTitle) {
       const levelData = this.levels[this.levelIndex];
-      this.levelTitle.textContent = levelData.title || this.t('level_title_format', { num: levelData.level });
+      this.levelTitle.textContent = this.getLevelTitle(levelData);
     }
 
     // 9. 主题下拉菜单翻译
@@ -273,7 +273,7 @@ Object.assign(SokobanGame.prototype, {
   showVictoryModal(newSteps, newPushes, newTime) {
     if (!this.victoryModal) return;
     const lvl = this.levels[this.levelIndex];
-    this.victoryLevelName.textContent = lvl.title || this.t('level_title_format', { num: lvl.level });
+    this.victoryLevelName.textContent = this.getLevelTitle(lvl);
     
     this.victorySteps.textContent = this.steps;
     this.victoryPushes.textContent = this.pushes;

@@ -172,6 +172,27 @@ class SokobanGame {
     } catch (e) {}
   }
 
+  getLevelTitle(levelData) {
+    if (!levelData) return '';
+    
+    // 1. 如果是 Warmup 关卡，尝试翻译关卡名字
+    if (this.currentSetName === 'Warmup') {
+      const translationKey = `level_warmup_${levelData.level}`;
+      const translated = this.t(translationKey);
+      if (translated && translated !== translationKey) {
+        return translated;
+      }
+    }
+    
+    // 2. 如果是 Simplified 关卡，将 " (已简化)" 翻译成对应语言
+    if (this.currentSetName === 'Simplified' && levelData.title) {
+      const suffix = this.t('simplified_suffix');
+      return levelData.title.replace(' (已简化)', suffix);
+    }
+    
+    return levelData.title || this.t('level_title_format', { num: levelData.level });
+  }
+
   // 加载关卡
   loadLevel(index) {
     if (index < 0 || index >= this.levels.length) return;
@@ -184,7 +205,7 @@ class SokobanGame {
 
     const levelData = this.levels[index];
     if (this.levelTitle) {
-      this.levelTitle.textContent = levelData.title || this.t('level_title_format', { num: levelData.level });
+      this.levelTitle.textContent = this.getLevelTitle(levelData);
     }
     
     // 初始化数值

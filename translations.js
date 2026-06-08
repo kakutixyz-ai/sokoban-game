@@ -42,7 +42,14 @@ const TRANSLATIONS = {
     "level_badge_Microban": "Microban I",
     "theme_classic": "经典复古",
     "theme_cyber": "赛博霓虹",
-    "theme_wood": "森林木箱"
+    "theme_wood": "森林木箱",
+    "or": " 或 ",
+    "simplified_suffix": " (已简化)",
+    "level_warmup_1": "一步到位",
+    "level_warmup_2": "直来直去",
+    "level_warmup_3": "纵向推送",
+    "level_warmup_4": "双喜临门",
+    "level_warmup_5": "拐弯抹角"
   },
   "zh-TW": {
     "brand_title": "推箱子",
@@ -82,7 +89,14 @@ const TRANSLATIONS = {
     "level_badge_Microban": "Microban I",
     "theme_classic": "經典復古",
     "theme_cyber": "賽博霓虹",
-    "theme_wood": "森林木箱"
+    "theme_wood": "森林木箱",
+    "or": " 或 ",
+    "simplified_suffix": " (已簡化)",
+    "level_warmup_1": "一步到位",
+    "level_warmup_2": "直來直去",
+    "level_warmup_3": "縱向推送",
+    "level_warmup_4": "雙喜臨門",
+    "level_warmup_5": "拐彎抹角"
   },
   "en": {
     "brand_title": "Sokoban",
@@ -122,7 +136,14 @@ const TRANSLATIONS = {
     "level_badge_Microban": "Microban I",
     "theme_classic": "Classic Retro",
     "theme_cyber": "Cyber Neon",
-    "theme_wood": "Wooden Crate"
+    "theme_wood": "Wooden Crate",
+    "or": " or ",
+    "simplified_suffix": " (Simplified)",
+    "level_warmup_1": "Direct Path",
+    "level_warmup_2": "Straight Line",
+    "level_warmup_3": "Vertical Push",
+    "level_warmup_4": "Double Joy",
+    "level_warmup_5": "Around the Corner"
   },
   "es": {
     "brand_title": "Sokoban",
@@ -162,7 +183,14 @@ const TRANSLATIONS = {
     "level_badge_Microban": "Microban I",
     "theme_classic": "Clásico Retro",
     "theme_cyber": "Neón Cyber",
-    "theme_wood": "Caja de Madera"
+    "theme_wood": "Caja de Madera",
+    "or": " o ",
+    "simplified_suffix": " (Simplificado)",
+    "level_warmup_1": "Camino Directo",
+    "level_warmup_2": "Línea Recta",
+    "level_warmup_3": "Empuje Vertical",
+    "level_warmup_4": "Doble Alegría",
+    "level_warmup_5": "Al Doblar la Esquina"
   },
   "ja": {
     "brand_title": "倉庫番",
@@ -202,7 +230,14 @@ const TRANSLATIONS = {
     "level_badge_Microban": "クラシック",
     "theme_classic": "クラシック",
     "theme_cyber": "サイバーネオン",
-    "theme_wood": "フォレストウッド"
+    "theme_wood": "フォレストウッド",
+    "or": " または ",
+    "simplified_suffix": " (簡易版)",
+    "level_warmup_1": "一歩でゴール",
+    "level_warmup_2": "直進あるのみ",
+    "level_warmup_3": "縦方向のプッシュ",
+    "level_warmup_4": "ダブルゴール",
+    "level_warmup_5": "角を曲がって"
   },
   "ko": {
     "brand_title": "소코반",
@@ -242,6 +277,13 @@ const TRANSLATIONS = {
     "level_badge_Microban": "마이크로반",
     "theme_classic": "클래식 레트로",
     "theme_cyber": "사이버 네온",
-    "theme_wood": "우든 크레이트"
+    "theme_wood": "우든 크레이트",
+    "or": " 또는 ",
+    "simplified_suffix": " (간략판)",
+    "level_warmup_1": "한 걸음에 골인",
+    "level_warmup_2": "직진본능",
+    "level_warmup_3": "종방향 밀기",
+    "level_warmup_4": "두 배의 기쁨",
+    "level_warmup_5": "모퉁이 돌기"
   }
 };
