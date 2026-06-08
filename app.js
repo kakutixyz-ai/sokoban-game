@@ -553,7 +553,7 @@ class SokobanGame {
 
     // 动态拼接 SVG string
     let svgHtml = `
-      <svg width="${width}" height="${height}" viewBox="0 0 ${width} ${height}" xmlns="http://www.w3.org/2000/svg">
+      <svg class="sokoban-theme-${this.currentTheme}" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}" xmlns="http://www.w3.org/2000/svg">
         <defs>
           <!-- ==================== CLASSIC THEME ==================== -->
           <!-- 1. 墙砖瓦片 (深灰色圆角矩形，内部细分砖缝) -->

@@ -42,7 +42,7 @@ const TRANSLATIONS = {
     "level_badge_Microban": "Microban I",
     "theme_classic": "经典复古",
     "theme_cyber": "赛博霓虹",
-    "theme_wood": "森林木仓"
+    "theme_wood": "森林木箱"
   },
   "zh-TW": {
     "brand_title": "推箱子",
@@ -82,7 +82,7 @@ const TRANSLATIONS = {
     "level_badge_Microban": "Microban I",
     "theme_classic": "經典復古",
     "theme_cyber": "賽博霓虹",
-    "theme_wood": "森林木倉"
+    "theme_wood": "森林木箱"
   },
   "en": {
     "brand_title": "Sokoban",

@@ -455,10 +455,22 @@ body {
 #game-board svg {
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
   border-radius: 12px;
-  background-color: #ffffff; /* 仓库外部空白区域背景为白色 */
   max-width: 100%;
   max-height: 100%;
   display: block;
+  transition: background-color 0.3s ease;
+}
+
+#game-board svg.sokoban-theme-classic {
+  background-color: #ffffff; /* 经典版外部白色 */
+}
+
+#game-board svg.sokoban-theme-cyber {
+  background-color: #080212; /* 赛博霓虹版外部深色背景 */
+}
+
+#game-board svg.sokoban-theme-wood {
+  background-color: #e5dfd3; /* 森林木箱版外部米木色背景 */
 }
 
 /* 移动端虚拟方向盘 */
