@@ -3,230 +3,7 @@
  * Core game logic, SVG rendering, audio synthesizer, and state persistence.
  */
 
-const TRANSLATIONS = {
-  "zh-CN": {
-    "brand_title": "推箱子",
-    "prev_level": "上一关",
-    "next_level": "下一关",
-    "step_count": "移动步数",
-    "push_count": "推送次数",
-    "time_elapsed": "已用时间",
-    "best_record": "本关最佳记录",
-    "best_steps": "步数:",
-    "best_pushes": "推送:",
-    "best_time": "时间:",
-    "undo": "撤销 (Z)",
-    "redo": "重做 (Y)",
-    "reset": "重置 (R)",
-    "sound": "音效 (M)",
-    "instructions_title": "操作提示",
-    "inst_keys": "移动角色",
-    "inst_goal": "推箱子到红点上。所有箱子归位即可过关",
-    "inst_mobile": "移动端支持屏幕<strong>滑动(Swipe)</strong>操作，或使用下方的虚拟方向键",
-    "victory_title": "关卡完成！",
-    "victory_steps": "所用步数",
-    "victory_pushes": "推送次数",
-    "victory_time": "所用时间",
-    "best_badge": "最佳!",
-    "replay": "重玩",
-    "next_level_btn": "下一关",
-    "set_warmup": "新手教学 (5关 - 极易)",
-    "set_simplified": "宇宙简化版 (40关 - 极简)",
-    "set_minicosmos": "Minicosmos (40关 - 简单)",
-    "set_microban": "Microban I (155关 - 经典)",
-    "level_format": "第 {num} 关: {title}",
-    "level_title_format": "第 {num} 关",
-    "level_badge_Warmup": "新手教学",
-    "level_badge_Simplified": "宇宙简化版",
-    "level_badge_Minicosmos": "Minicosmos",
-    "level_badge_Microban": "Microban I"
-  },
-  "zh-TW": {
-    "brand_title": "推箱子",
-    "prev_level": "上一關",
-    "next_level": "下一關",
-    "step_count": "移動步數",
-    "push_count": "推送次數",
-    "time_elapsed": "已用時間",
-    "best_record": "本關最佳記錄",
-    "best_steps": "步數:",
-    "best_pushes": "推送:",
-    "best_time": "時間:",
-    "undo": "撤銷 (Z)",
-    "redo": "重做 (Y)",
-    "reset": "重置 (R)",
-    "sound": "音效 (M)",
-    "instructions_title": "操作提示",
-    "inst_keys": "移動角色",
-    "inst_goal": "推箱子到紅點上。所有箱子歸位即可過關",
-    "inst_mobile": "移動端支援屏幕滑動(Swipe)操作，或使用下方的虛擬方向鍵",
-    "victory_title": "關卡完成！",
-    "victory_steps": "所用步數",
-    "victory_pushes": "推送次數",
-    "victory_time": "所用時間",
-    "best_badge": "最佳!",
-    "replay": "重玩",
-    "next_level_btn": "下一關",
-    "set_warmup": "新手教學 (5關 - 極易)",
-    "set_simplified": "宇宙簡化版 (40關 - 極簡)",
-    "set_minicosmos": "Minicosmos (40關 - 簡單)",
-    "set_microban": "Microban I (155關 - 經典)",
-    "level_format": "第 {num} 關: {title}",
-    "level_title_format": "第 {num} 關",
-    "level_badge_Warmup": "新手教學",
-    "level_badge_Simplified": "宇宙簡化版",
-    "level_badge_Minicosmos": "Minicosmos",
-    "level_badge_Microban": "Microban I"
-  },
-  "en": {
-    "brand_title": "Sokoban",
-    "prev_level": "Prev",
-    "next_level": "Next",
-    "step_count": "Steps",
-    "push_count": "Pushes",
-    "time_elapsed": "Time",
-    "best_record": "Best Record",
-    "best_steps": "Steps:",
-    "best_pushes": "Pushes:",
-    "best_time": "Time:",
-    "undo": "Undo (Z)",
-    "redo": "Redo (Y)",
-    "reset": "Reset (R)",
-    "sound": "Sound (M)",
-    "instructions_title": "Instructions",
-    "inst_keys": "to move character",
-    "inst_goal": "Push boxes onto red dots. Move all boxes to goal dots to clear the level.",
-    "inst_mobile": "On mobile, <strong>swipe</strong> screen or use the virtual D-pad below.",
-    "victory_title": "Level Cleared!",
-    "victory_steps": "Steps Taken",
-    "victory_pushes": "Pushes Made",
-    "victory_time": "Time Elapsed",
-    "best_badge": "Best!",
-    "replay": "Replay",
-    "next_level_btn": "Next Level",
-    "set_warmup": "Tutorial (5 Lvl - Easy)",
-    "set_simplified": "Simplified Cosmos (40 Lvl - Very Easy)",
-    "set_minicosmos": "Minicosmos (40 Lvl - Easy)",
-    "set_microban": "Microban I (155 Lvl - Classic)",
-    "level_format": "Lvl {num}: {title}",
-    "level_title_format": "Level {num}",
-    "level_badge_Warmup": "Tutorial",
-    "level_badge_Simplified": "Simplified",
-    "level_badge_Minicosmos": "Minicosmos",
-    "level_badge_Microban": "Microban I"
-  },
-  "es": {
-    "brand_title": "Sokoban",
-    "prev_level": "Prev",
-    "next_level": "Sig",
-    "step_count": "Pasos",
-    "push_count": "Empujes",
-    "time_elapsed": "Tiempo",
-    "best_record": "Mejor Récord",
-    "best_steps": "Pasos:",
-    "best_pushes": "Empujes:",
-    "best_time": "Tiempo:",
-    "undo": "Deshacer (Z)",
-    "redo": "Rehacer (Y)",
-    "reset": "Reiniciar (R)",
-    "sound": "Sonido (M)",
-    "instructions_title": "Instrucciones",
-    "inst_keys": "para mover al personaje",
-    "inst_goal": "Empuja las cajas sobre los puntos rojos. Coloca todas las cajas en las metas para pasar de nivel.",
-    "inst_mobile": "En móviles, <strong>desliza</strong> la pantalla o usa el panel de control táctil de abajo.",
-    "victory_title": "¡Nivel Completado!",
-    "victory_steps": "Pasos Realizados",
-    "victory_pushes": "Empujes Realizados",
-    "victory_time": "Tiempo Transcurrido",
-    "best_badge": "¡Mejor!",
-    "replay": "Rejugar",
-    "next_level_btn": "Siguiente",
-    "set_warmup": "Tutorial (5 Niv - Fácil)",
-    "set_simplified": "Cosmos Simplificado (40 Niv - Muy Fácil)",
-    "set_minicosmos": "Minicosmos (40 Niv - Fácil)",
-    "set_microban": "Microban I (155 Niv - Clásico)",
-    "level_format": "Niv {num}: {title}",
-    "level_title_format": "Nivel {num}",
-    "level_badge_Warmup": "Tutorial",
-    "level_badge_Simplified": "Simplificado",
-    "level_badge_Minicosmos": "Minicosmos",
-    "level_badge_Microban": "Microban I"
-  },
-  "ja": {
-    "brand_title": "倉庫番",
-    "prev_level": "前へ",
-    "next_level": "次へ",
-    "step_count": "歩数",
-    "push_count": "押した回数",
-    "time_elapsed": "時間",
-    "best_record": "ベスト記録",
-    "best_steps": "歩数:",
-    "best_pushes": "回数:",
-    "best_time": "時間:",
-    "undo": "戻す (Z)",
-    "redo": "進む (Y)",
-    "reset": "リセット (R)",
-    "sound": "効果音 (M)",
-    "instructions_title": "操作方法",
-    "inst_keys": "でキャラクターを移動",
-    "inst_goal": "箱を赤い点の上に押します。すべての箱を目標地点に置くとクリアです。",
-    "inst_mobile": "モバイルでは、画面を<strong>スワイプ</strong>するか、下の仮想十字キーを使用します。",
-    "victory_title": "ステージクリア！",
-    "victory_steps": "かかった歩数",
-    "victory_pushes": "押した回数",
-    "victory_time": "クリア時間",
-    "best_badge": "最高！",
-    "replay": "再挑戦",
-    "next_level_btn": "次のステージ",
-    "set_warmup": "チュートリアル (5面 - 非常に簡単)",
-    "set_simplified": "宇宙簡易版 (40面 - 簡単)",
-    "set_minicosmos": "Minicosmos (40面 - 普通)",
-    "set_microban": "Microban I (155面 - クラシック)",
-    "level_format": "ステージ {num}: {title}",
-    "level_title_format": "ステージ {num}",
-    "level_badge_Warmup": "練習用",
-    "level_badge_Simplified": "簡易版",
-    "level_badge_Minicosmos": "宇宙",
-    "level_badge_Microban": "クラシック"
-  },
-  "ko": {
-    "brand_title": "소코반",
-    "prev_level": "이전",
-    "next_level": "다음",
-    "step_count": "걸음수",
-    "push_count": "이동수",
-    "time_elapsed": "시간",
-    "best_record": "최고 기록",
-    "best_steps": "걸음수:",
-    "best_pushes": "이동수:",
-    "best_time": "시간:",
-    "undo": "실행 취소 (Z)",
-    "redo": "다시 실행 (Y)",
-    "reset": "재시작 (R)",
-    "sound": "효과음 (M)",
-    "instructions_title": "조작 방법",
-    "inst_keys": "캐릭터 이동",
-    "inst_goal": "상자를 붉은 점 위로 미세요. 모든 상자를 목적지에 놓으면 스테이지가 완료됩니다.",
-    "inst_mobile": "모바일에서는 화면을 <strong>스와이프</strong>하거나 아래 가상 방향키를 사용하세요.",
-    "victory_title": "스테이지 클리어!",
-    "victory_steps": "소요 걸음수",
-    "victory_pushes": "상자 민 횟수",
-    "victory_time": "소요 시간",
-    "best_badge": "최고!",
-    "replay": "다시하기",
-    "next_level_btn": "다음 단계",
-    "set_warmup": "튜토리얼 (5단계 - 매우 쉬움)",
-    "set_simplified": "우주 간략판 (40단계 - 매우 쉬움)",
-    "set_minicosmos": "Minicosmos (40단계 - 쉬움)",
-    "set_microban": "Microban I (155단계 - 클래식)",
-    "level_format": "스테이지 {num}: {title}",
-    "level_title_format": "스테이지 {num}",
-    "level_badge_Warmup": "튜토리얼",
-    "level_badge_Simplified": "간략판",
-    "level_badge_Minicosmos": "미니코스모스",
-    "level_badge_Microban": "마이크로반"
-  }
-};
+// translations.js loaded prior to this script defines TRANSLATIONS dictionary
 
 class SokobanGame {
   constructor() {
@@ -264,9 +41,8 @@ class SokobanGame {
     // 用户进度数据 (从 LocalStorage 读取)
     this.progress = this.loadProgress();
 
-    // 音效合成器
-    this.audioCtx = null;
-    this.audioInitialized = false;
+    // 音效合成器 (SokobanAudio 实例)
+    this.audio = new SokobanAudio();
 
     // DOM 元素引用
     this.initDOMReferences();
@@ -520,9 +296,9 @@ class SokobanGame {
 
     // 激活音效解锁监听器（应对现代浏览器安全限制）
     const unlockAudio = () => {
-      this.initAudio();
-      if (this.audioCtx && this.audioCtx.state === 'suspended') {
-        this.audioCtx.resume().then(() => {
+      this.audio.init();
+      if (this.audio.audioCtx && this.audio.audioCtx.state === 'suspended') {
+        this.audio.audioCtx.resume().then(() => {
           console.log("AudioContext unlocked and running!");
         }).catch(err => {
           console.warn("Failed to resume AudioContext", err);
@@ -538,165 +314,17 @@ class SokobanGame {
     document.addEventListener('touchstart', unlockAudio, { passive: true });
   }
 
-  // 初始化音效 (由于浏览器安全限制，必须在用户操作后启动 AudioContext)
-  initAudio() {
-    if (this.audioInitialized) return;
-    try {
-      const AudioContextClass = window.AudioContext || window.webkitAudioContext;
-      if (AudioContextClass) {
-        this.audioCtx = new AudioContextClass();
-        this.audioInitialized = true;
-      }
-    } catch (e) {
-      console.warn("Web Audio API is not supported in this browser.", e);
-    }
-  }
-
-  // 播放合成音效
-  playSound(type) {
-    this.initAudio();
-    if (this.isMuted || !this.audioCtx) return;
-
-    // 如果 audioContext 被挂起，尝试恢复它
-    if (this.audioCtx.state === 'suspended') {
-      this.audioCtx.resume();
-    }
-
-    const now = this.audioCtx.currentTime;
-    
-    if (type === 'walk') {
-      // 走路音效：清脆可爱的小皮鞋踏地声（带高音木鱼敲击感）
-      const osc = this.audioCtx.createOscillator();
-      const gainNode = this.audioCtx.createGain();
-      
-      osc.type = 'triangle';
-      osc.frequency.setValueAtTime(450, now);
-      osc.frequency.exponentialRampToValueAtTime(150, now + 0.06);
-      
-      gainNode.gain.setValueAtTime(0.5, now);
-      gainNode.gain.exponentialRampToValueAtTime(0.01, now + 0.06);
-      
-      osc.connect(gainNode);
-      gainNode.connect(this.audioCtx.destination);
-      
-      osc.start(now);
-      osc.stop(now + 0.07);
-    } 
-    else if (type === 'push') {
-      // 推箱子音效：沉重而有质感的“木箱在地板上滑行”的木质摩擦声（由两个频率互调形成）
-      const osc1 = this.audioCtx.createOscillator();
-      const osc2 = this.audioCtx.createOscillator();
-      const gainNode = this.audioCtx.createGain();
-      const filter = this.audioCtx.createBiquadFilter();
-      
-      osc1.type = 'sawtooth';
-      osc1.frequency.setValueAtTime(110, now);
-      osc1.frequency.linearRampToValueAtTime(50, now + 0.25);
-
-      osc2.type = 'triangle';
-      osc2.frequency.setValueAtTime(80, now);
-      osc2.frequency.linearRampToValueAtTime(40, now + 0.25);
-      
-      filter.type = 'lowpass';
-      filter.frequency.setValueAtTime(350, now);
-      filter.frequency.exponentialRampToValueAtTime(150, now + 0.25);
-      
-      gainNode.gain.setValueAtTime(0.7, now);
-      gainNode.gain.exponentialRampToValueAtTime(0.01, now + 0.25);
-      
-      osc1.connect(filter);
-      osc2.connect(filter);
-      filter.connect(gainNode);
-      gainNode.connect(this.audioCtx.destination);
-      
-      osc1.start(now);
-      osc1.stop(now + 0.26);
-      osc2.start(now);
-      osc2.stop(now + 0.26);
-    } 
-    else if (type === 'victory') {
-      // 胜利音效：一段欢快、昂扬的复古 8-bit 经典红白机（NES）过关旋律！
-      // 旋律音符（频率）：E5, G5, C6, E6, D6, C6, G6 (大高潮长音)
-      const melody = [
-        { f: 659.25, d: 0.10 }, // E5
-        { f: 783.99, d: 0.10 }, // G5
-        { f: 1046.50, d: 0.10 }, // C6
-        { f: 1318.51, d: 0.10 }, // E6
-        { f: 1174.66, d: 0.10 }, // D6
-        { f: 1046.50, d: 0.15 }, // C6
-        { f: 1567.98, d: 0.35 }  // G6 (大高潮长音)
-      ];
-      
-      let startTime = now;
-      melody.forEach((note) => {
-        const osc = this.audioCtx.createOscillator();
-        const gainNode = this.audioCtx.createGain();
-        
-        osc.type = 'square'; // 方波带来经典的红白机质感
-        osc.frequency.setValueAtTime(note.f, startTime);
-        
-        // 增益包络
-        gainNode.gain.setValueAtTime(0, startTime);
-        gainNode.gain.linearRampToValueAtTime(0.35, startTime + 0.01);
-        gainNode.gain.exponentialRampToValueAtTime(0.001, startTime + note.d - 0.01);
-        
-        osc.connect(gainNode);
-        gainNode.connect(this.audioCtx.destination);
-        
-        osc.start(startTime);
-        osc.stop(startTime + note.d);
-        
-        // 伴奏低音（使用三角波在下方做一个八度的和弦伴奏，让声音更丰满、有趣）
-        const subOsc = this.audioCtx.createOscillator();
-        const subGain = this.audioCtx.createGain();
-        subOsc.type = 'triangle';
-        subOsc.frequency.setValueAtTime(note.f / 2, startTime);
-        
-        subGain.gain.setValueAtTime(0, startTime);
-        subGain.gain.linearRampToValueAtTime(0.25, startTime + 0.01);
-        subGain.gain.exponentialRampToValueAtTime(0.001, startTime + note.d - 0.01);
-        
-        subOsc.connect(subGain);
-        subGain.connect(this.audioCtx.destination);
-        
-        subOsc.start(startTime);
-        subOsc.stop(startTime + note.d);
-        
-        startTime += note.d + 0.02; // 每个音符间留微小空隙，听起来颗粒感更好
-      });
-    } 
-    else if (type === 'undo') {
-      // 撤销音效：滑稽搞笑的卡通“啵嘤”弹回声音
-      const osc = this.audioCtx.createOscillator();
-      const gainNode = this.audioCtx.createGain();
-      
-      osc.type = 'sine';
-      osc.frequency.setValueAtTime(180, now);
-      osc.frequency.exponentialRampToValueAtTime(500, now + 0.15); // 快速向上划过的频率
-      
-      gainNode.gain.setValueAtTime(0.45, now);
-      gainNode.gain.exponentialRampToValueAtTime(0.01, now + 0.15);
-      
-      osc.connect(gainNode);
-      gainNode.connect(this.audioCtx.destination);
-      
-      osc.start(now);
-      osc.stop(now + 0.16);
-    }
-  }
-
   // 切换静音
   toggleAudio() {
-    this.isMuted = !this.isMuted;
-    if (this.isMuted) {
+    this.audio.setMuted(!this.audio.isMuted);
+    if (this.audio.isMuted) {
       this.audioIconUnmuted.classList.add('hidden');
       this.audioIconMuted.classList.remove('hidden');
     } else {
       this.audioIconUnmuted.classList.remove('hidden');
       this.audioIconMuted.classList.add('hidden');
       // 顺便激活音效
-      this.initAudio();
-      this.playSound('walk');
+      this.audio.playSound('walk');
     }
   }
 
@@ -1128,7 +756,7 @@ class SokobanGame {
       this.steps++;
       this.pushes++;
       
-      this.playSound('push');
+      this.audio.playSound('push');
     } 
     else {
       // 正常行走
@@ -1139,7 +767,7 @@ class SokobanGame {
 
       this.steps++;
       
-      this.playSound('walk');
+      this.audio.playSound('walk');
     }
 
     // 重新渲染画面
@@ -1186,7 +814,7 @@ class SokobanGame {
   levelSolved() {
     this.isSolved = true;
     this.stopTimer();
-    this.playSound('victory');
+    this.audio.playSound('victory');
 
     // 检查并记录最佳成绩
     const currentBest = this.progress[this.currentSetName].bests[this.levelIndex] || {};
@@ -1284,7 +912,7 @@ class SokobanGame {
     this.steps = prev.steps;
     this.pushes = prev.pushes;
 
-    this.playSound('undo');
+    this.audio.playSound('undo');
     this.renderBoard();
     this.updateStatsUI();
     this.updateHistoryButtons();
@@ -1311,7 +939,7 @@ class SokobanGame {
     this.steps = next.steps;
     this.pushes = next.pushes;
 
-    this.playSound('walk');
+    this.audio.playSound('walk');
     this.renderBoard();
     this.updateStatsUI();
     this.updateHistoryButtons();
@@ -1436,7 +1064,7 @@ class SokobanGame {
       startX = e.touches[0].clientX;
       startY = e.touches[0].clientY;
       // 顺便激活音效，以响应移动设备的用户点击激活政策
-      this.initAudio();
+      this.audio.init();
     }, { passive: true });
 
     this.boardContainer.addEventListener('touchend', (e) => {
