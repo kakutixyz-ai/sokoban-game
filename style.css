@@ -132,18 +132,21 @@ body {
   pointer-events: none;
 }
 
-/* 语言选择器专用样式（紧凑型） */
-.select-lang {
+/* 语言与主题选择器专用样式（紧凑型） */
+.select-lang,
+.select-theme {
   border-radius: 8px;
 }
 
-.select-lang select {
+.select-lang select,
+.select-theme select {
   font-size: 13px;
   padding: 6px 25px 6px 10px;
   font-weight: 500;
 }
 
-.select-lang::after {
+.select-lang::after,
+.select-theme::after {
   right: 10px;
 }
 

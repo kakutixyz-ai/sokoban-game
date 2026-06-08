@@ -39,7 +39,10 @@ const TRANSLATIONS = {
     "level_badge_Warmup": "新手教学",
     "level_badge_Simplified": "宇宙简化版",
     "level_badge_Minicosmos": "Minicosmos",
-    "level_badge_Microban": "Microban I"
+    "level_badge_Microban": "Microban I",
+    "theme_classic": "经典复古",
+    "theme_cyber": "赛博霓虹",
+    "theme_wood": "森林木仓"
   },
   "zh-TW": {
     "brand_title": "推箱子",
@@ -76,7 +79,10 @@ const TRANSLATIONS = {
     "level_badge_Warmup": "新手教學",
     "level_badge_Simplified": "宇宙簡化版",
     "level_badge_Minicosmos": "Minicosmos",
-    "level_badge_Microban": "Microban I"
+    "level_badge_Microban": "Microban I",
+    "theme_classic": "經典復古",
+    "theme_cyber": "賽博霓虹",
+    "theme_wood": "森林木倉"
   },
   "en": {
     "brand_title": "Sokoban",
@@ -113,7 +119,10 @@ const TRANSLATIONS = {
     "level_badge_Warmup": "Tutorial",
     "level_badge_Simplified": "Simplified",
     "level_badge_Minicosmos": "Minicosmos",
-    "level_badge_Microban": "Microban I"
+    "level_badge_Microban": "Microban I",
+    "theme_classic": "Classic Retro",
+    "theme_cyber": "Cyber Neon",
+    "theme_wood": "Wooden Crate"
   },
   "es": {
     "brand_title": "Sokoban",
@@ -150,7 +159,10 @@ const TRANSLATIONS = {
     "level_badge_Warmup": "Tutorial",
     "level_badge_Simplified": "Simplificado",
     "level_badge_Minicosmos": "Minicosmos",
-    "level_badge_Microban": "Microban I"
+    "level_badge_Microban": "Microban I",
+    "theme_classic": "Clásico Retro",
+    "theme_cyber": "Neón Cyber",
+    "theme_wood": "Caja de Madera"
   },
   "ja": {
     "brand_title": "倉庫番",
@@ -187,7 +199,10 @@ const TRANSLATIONS = {
     "level_badge_Warmup": "練習用",
     "level_badge_Simplified": "簡易版",
     "level_badge_Minicosmos": "宇宙",
-    "level_badge_Microban": "クラシック"
+    "level_badge_Microban": "クラシック",
+    "theme_classic": "クラシック",
+    "theme_cyber": "サイバーネオン",
+    "theme_wood": "フォレストウッド"
   },
   "ko": {
     "brand_title": "소코반",
@@ -224,6 +239,9 @@ const TRANSLATIONS = {
     "level_badge_Warmup": "튜토리얼",
     "level_badge_Simplified": "간략판",
     "level_badge_Minicosmos": "미니코스모스",
-    "level_badge_Microban": "마이크로반"
+    "level_badge_Microban": "마이크로반",
+    "theme_classic": "클래식 레트로",
+    "theme_cyber": "사이버 네온",
+    "theme_wood": "우든 크레이트"
   }
 };
