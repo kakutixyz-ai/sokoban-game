@@ -36,6 +36,8 @@ class SokobanGame {
     // 设置
     this.isMuted = false;
     this.isSolved = false;
+    this.isHintMode = false;
+    this.hintStepIndex = 0;
     
     // 用户进度数据 (从 LocalStorage 读取)
     this.progress = this.loadProgress();
@@ -197,6 +199,7 @@ class SokobanGame {
     if (index < 0 || index >= this.levels.length) return;
     
     this.levelIndex = index;
+    this.stopHintMode();
     this.saveCurrentLevelIndex();
     if (this.levelSelect) {
       this.levelSelect.value = index;
@@ -295,21 +298,22 @@ class SokobanGame {
   }
 
   // 移动玩家主逻辑
-  movePlayer(dr, dc, dirName) {
-    if (this.isSolved) return;
+  movePlayer(dr, dc, dirName, isHintStep = false) {
+    if (this.isSolved) return false;
+    if (this.isHintMode && !isHintStep) return false;
 
     this.facing = dirName;
 
     const targetR = this.player.r + dr;
     const targetC = this.player.c + dc;
 
-    if (targetR < 0 || targetR >= this.rows || targetC < 0 || targetC >= this.cols) return;
+    if (targetR < 0 || targetR >= this.rows || targetC < 0 || targetC >= this.cols) return false;
 
     const targetType = this.board[targetR][targetC];
     
     if (targetType === '#' || targetType === 'x') {
       this.renderBoard();
-      return;
+      return false;
     }
 
     const hasBox = this.boxes[targetR][targetC];
@@ -318,14 +322,14 @@ class SokobanGame {
       const pushR = targetR + dr;
       const pushC = targetC + dc;
 
-      if (pushR < 0 || pushR >= this.rows || pushC < 0 || pushC >= this.cols) return;
+      if (pushR < 0 || pushR >= this.rows || pushC < 0 || pushC >= this.cols) return false;
 
       const pushType = this.board[pushR][pushC];
       const pushHasBox = this.boxes[pushR][pushC];
 
       if (pushType === '#' || pushType === 'x' || pushHasBox) {
         this.renderBoard();
-        return;
+        return false;
       }
 
       this.pushToHistory();
@@ -357,6 +361,7 @@ class SokobanGame {
     this.redoStack = [];
     this.updateHistoryButtons();
     this.checkVictory();
+    return true;
   }
 
   movePlayerInDirection(dir) {
@@ -483,6 +488,42 @@ class SokobanGame {
 
   restartLevel() {
     this.loadLevel(this.levelIndex);
+  }
+
+  startHintMode() {
+    if (this.currentSetName !== 'Microban' || typeof MICROBAN_SOLUTIONS === 'undefined') return;
+    this.loadLevel(this.levelIndex);
+    this.isHintMode = true;
+    this.hintStepIndex = 0;
+    this.updateHintUI();
+  }
+
+  stopHintMode() {
+    this.isHintMode = false;
+    this.hintStepIndex = 0;
+    this.updateHintUI();
+  }
+
+  toggleHintMode() {
+    if (this.isHintMode) this.stopHintMode();
+    else this.startHintMode();
+  }
+
+  playNextHintStep() {
+    if (!this.isHintMode || this.isSolved) return;
+    const solution = MICROBAN_SOLUTIONS[this.levelIndex];
+    const move = solution && solution[this.hintStepIndex];
+    if (!move) return;
+    const directions = {
+      u: [-1, 0, 'up'],
+      d: [1, 0, 'down'],
+      l: [0, -1, 'left'],
+      r: [0, 1, 'right']
+    };
+    if (this.movePlayer(...directions[move], true)) {
+      this.hintStepIndex++;
+      this.updateHintUI();
+    }
   }
 
   changeLevel(offset) {

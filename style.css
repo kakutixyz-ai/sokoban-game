@@ -218,6 +218,31 @@ body {
   fill: #fff;
 }
 
+.hint-controls {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.btn-hint {
+  color: #f6c85f;
+  border-color: rgba(246, 200, 95, 0.4);
+  background: rgba(246, 200, 95, 0.1);
+}
+
+.btn-hint.active {
+  color: #121216;
+  background: #f6c85f;
+  border-color: #f6c85f;
+}
+
+.hint-progress {
+  grid-column: 1 / -1;
+  color: var(--text-secondary);
+  font-size: 12px;
+  text-align: center;
+}
+
 .btn-secondary {
   background: rgba(255, 255, 255, 0.02);
   border-color: var(--border-color);

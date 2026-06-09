@@ -114,6 +114,15 @@
               <span data-i18n="sound">音效 (M)</span>
             </button>
           </div>
+          <div class="hint-controls">
+            <button id="hint-mode-btn" class="btn btn-hint btn-flex" title="开启提示模式">
+              <span>提示模式</span>
+            </button>
+            <button id="hint-next-btn" class="btn btn-success btn-flex" title="执行解答的下一步" disabled>
+              <span>下一步</span>
+            </button>
+            <div id="hint-progress" class="hint-progress hidden">0 / 0</div>
+          </div>
         </div>
 
         <div class="instructions-panel">
@@ -201,6 +210,7 @@
   <script src="levels_simplified.js?v=1.0.6"></script>
   <script src="levels_minicosmos.js?v=1.0.6"></script>
   <script src="levels_microban.js?v=1.0.6"></script>
+  <script src="solutions_microban.js?v=1.0.0"></script>
   <script src="levels.js?v=1.0.6"></script>
   <script src="translations.js?v=1.0.6"></script>
   <script src="audio.js?v=1.0.6"></script>

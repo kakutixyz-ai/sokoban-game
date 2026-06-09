@@ -29,6 +29,9 @@ Object.assign(SokobanGame.prototype, {
     this.audioBtn = document.getElementById('audio-toggle-btn');
     this.audioIconUnmuted = document.getElementById('audio-icon-unmuted');
     this.audioIconMuted = document.getElementById('audio-icon-muted');
+    this.hintModeBtn = document.getElementById('hint-mode-btn');
+    this.hintNextBtn = document.getElementById('hint-next-btn');
+    this.hintProgress = document.getElementById('hint-progress');
     
     this.victoryModal = document.getElementById('victory-modal');
     this.victoryLevelName = document.getElementById('victory-level-name');
@@ -131,6 +134,12 @@ Object.assign(SokobanGame.prototype, {
     }
     if (this.audioBtn) {
       this.audioBtn.addEventListener('click', () => this.toggleAudio());
+    }
+    if (this.hintModeBtn) {
+      this.hintModeBtn.addEventListener('click', () => this.toggleHintMode());
+    }
+    if (this.hintNextBtn) {
+      this.hintNextBtn.addEventListener('click', () => this.playNextHintStep());
     }
 
     // 键盘事件
@@ -310,6 +319,18 @@ Object.assign(SokobanGame.prototype, {
     if (this.pushesVal) this.pushesVal.textContent = this.pushes;
   },
 
+  updateHintUI() {
+    if (!this.hintModeBtn || !this.hintNextBtn || !this.hintProgress) return;
+    const available = this.currentSetName === 'Microban' && typeof MICROBAN_SOLUTIONS !== 'undefined';
+    const solution = available ? MICROBAN_SOLUTIONS[this.levelIndex] : '';
+    this.hintModeBtn.disabled = !available;
+    this.hintModeBtn.classList.toggle('active', this.isHintMode);
+    this.hintModeBtn.querySelector('span').textContent = this.isHintMode ? '退出提示' : '提示模式';
+    this.hintNextBtn.disabled = !this.isHintMode || this.isSolved || this.hintStepIndex >= solution.length;
+    this.hintProgress.classList.toggle('hidden', !this.isHintMode);
+    this.hintProgress.textContent = `${this.hintStepIndex} / ${solution.length}`;
+  },
+
   // 侧边栏历史记录显示
   displayBestScores() {
     const best = this.progress[this.currentSetName].bests[this.levelIndex];
@@ -360,6 +381,12 @@ Object.assign(SokobanGame.prototype, {
         break;
       case 'KeyM':
         this.toggleAudio();
+        break;
+      case 'KeyH':
+        this.toggleHintMode();
+        break;
+      case 'Space':
+        this.playNextHintStep();
         break;
     }
   },
