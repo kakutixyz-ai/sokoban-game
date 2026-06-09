@@ -1,7 +1,6 @@
 /**
  * Sokoban Game - Core Engine (app_core.js)
  * Manages game state, levels loading, movement logic, history, and persistence.
- * Line limit checked: ~330 lines (target: < 500 lines)
  */
 
 class SokobanGame {
@@ -157,7 +156,7 @@ class SokobanGame {
     try {
       const savedIdx = localStorage.getItem('sokoban_current_level_idx_' + this.currentSetName);
       if (savedIdx !== null) {
-        const val = parseInt(savedIdx);
+        const val = parseInt(savedIdx, 10);
         if (val >= 0 && val < this.levels.length) {
           return val;
         }

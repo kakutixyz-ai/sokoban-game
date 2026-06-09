@@ -1,7 +1,6 @@
 /**
  * Sokoban Game - SVG Board Renderer (app_renderer.js)
  * Implements SVG templates (Classic, Cyber, Wood) and board compilation.
- * Line limit checked: ~340 lines (target: < 500 lines)
  */
 
 Object.assign(SokobanGame.prototype, {

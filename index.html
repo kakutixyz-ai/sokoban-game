@@ -4,11 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>经典推箱子 - Microban 155关</title>
+  <!-- 引入 Favicon 📦 -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📦</text></svg>">
   <!-- 引入现代字体 -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css?v=1.0.6">
 </head>
 <body>
   <div class="game-container">
@@ -195,17 +197,29 @@
   </div>
 
   <!-- 引入游戏关卡与主逻辑 -->
-  <script src="levels.js?v=1.0.4"></script>
-  <script src="translations.js?v=1.0.4"></script>
-  <script src="audio.js?v=1.0.4"></script>
-  <script src="app_core.js?v=1.0.4"></script>
-  <script src="app_renderer.js?v=1.0.4"></script>
-  <script src="app_ui.js?v=1.0.4"></script>
+  <script src="levels_warmup.js?v=1.0.6"></script>
+  <script src="levels_simplified.js?v=1.0.6"></script>
+  <script src="levels_minicosmos.js?v=1.0.6"></script>
+  <script src="levels_microban.js?v=1.0.6"></script>
+  <script src="levels.js?v=1.0.6"></script>
+  <script src="translations.js?v=1.0.6"></script>
+  <script src="audio.js?v=1.0.6"></script>
+  <script src="app_core.js?v=1.0.6"></script>
+  <script src="app_renderer.js?v=1.0.6"></script>
+  <script src="app_ui.js?v=1.0.6"></script>
 
   <!-- Vercel Web Analytics -->
   <script>
     window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+    const isLocal = ['localhost', '127.0.0.1'].includes(window.location.hostname)
+      || window.location.protocol === 'file:';
+
+    if (!isLocal) {
+      const script = document.createElement('script');
+      script.src = '/_vercel/insights/script.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    }
   </script>
-  <script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>

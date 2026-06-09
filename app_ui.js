@@ -1,7 +1,6 @@
 /**
  * Sokoban Game - User Interface (app_ui.js)
  * Manages DOM events, translations, settings panels, swipes, and modal dialogs.
- * Line limit checked: ~390 lines (target: < 500 lines)
  */
 
 Object.assign(SokobanGame.prototype, {
@@ -110,7 +109,7 @@ Object.assign(SokobanGame.prototype, {
     // 关卡切换
     if (this.levelSelect) {
       this.levelSelect.addEventListener('change', (e) => {
-        this.loadLevel(parseInt(e.target.value));
+        this.loadLevel(parseInt(e.target.value, 10));
       });
     }
     if (this.prevBtn) {
@@ -172,9 +171,7 @@ Object.assign(SokobanGame.prototype, {
     const unlockAudio = () => {
       this.audio.init();
       if (this.audio.audioCtx && this.audio.audioCtx.state === 'suspended') {
-        this.audio.audioCtx.resume().then(() => {
-          console.log("AudioContext unlocked and running!");
-        }).catch(err => {
+        this.audio.audioCtx.resume().catch(err => {
           console.warn("Failed to resume AudioContext", err);
         });
       }
